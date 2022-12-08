@@ -85,7 +85,7 @@ impl<'a> FullParams<'a> {
     ///
     /// Defaults to false.
     pub fn set_print_special_tokens(&mut self, print_special_tokens: bool) {
-        self.fp.print_special_tokens = print_special_tokens;
+        self.fp.print_special = print_special_tokens;
     }
 
     /// Set whether to print progress.
@@ -107,6 +107,38 @@ impl<'a> FullParams<'a> {
     /// Defaults to true.
     pub fn set_print_timestamps(&mut self, print_timestamps: bool) {
         self.fp.print_timestamps = print_timestamps;
+    }
+
+    /// force single segment output (useful for streaming)
+    ///
+    /// Defaults to true.
+    pub fn set_single_segment(&mut self, single_segment: bool) {
+        self.fp.single_segment = single_segment;
+    }
+
+    /// Set max_tokens
+    ///
+    pub fn set_max_tokens(&mut self, max_tokens: i32) {
+        self.fp.max_tokens = max_tokens;
+    }
+
+    /// Set prompt_tokens
+    ///
+    pub fn set_prompt_tokens(&mut self, prompt_tokens: &[c_int]) {
+        self.fp.prompt_tokens = prompt_tokens.as_ptr();
+        self.fp.prompt_n_tokens = prompt_tokens.len() as _;
+    }
+
+    /// Set prompt_tokens
+    ///
+    pub fn set_token_timestamps(&mut self, token_timestamps: bool) {
+        self.fp.token_timestamps = token_timestamps;
+    }
+
+    /// Set max_len
+    ///
+    pub fn set_max_len(&mut self, max_len: i32) {
+        self.fp.max_len = max_len;
     }
 
     /// Set the target language.
